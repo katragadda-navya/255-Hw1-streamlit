@@ -1,4 +1,3 @@
-pip install streamlit pyngrok
 import streamlit as st
 import pandas as pd
 import streamlit as st
@@ -67,10 +66,3 @@ else:
 
 
 st.write("This dashboard pulls data from BigQuery and updates interactively based on your selections.")
-
-from pyngrok import ngrok
-ngrok.set_auth_token("2tmaNcYmMMJfnY8vvLEPM60dgJN_5vVRAMJZzYdyZrXXEdnUm")
-from pyngrok import ngrok
-
-ngrok.set_auth_token("2tmaNcYmMMJfnY8vvLEPM60dgJN_5vVRAMJZzYdyZrXXEdnUm")
-public_url = ngrok.connect(addr=8501, proto="http")
