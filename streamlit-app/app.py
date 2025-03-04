@@ -4,8 +4,22 @@ import streamlit as st
 import pandas as pd
 import plotly.express as px
 from google.cloud import bigquery
+import os
+import json
+from google.cloud import bigquery
+from google.oauth2 import service_account
 
-client = bigquery.Client(project="homework1-452207")
+# Check if the secret is available in the environment variables (Streamlit Cloud loads them automatically)
+creds_json = os.getenv("GOOGLE_APPLICATION_CREDENTIALS_JSON")
+if creds_json:
+    # Parse the JSON credentials from the environment variable
+    service_account_info = json.loads(creds_json)
+    credentials = service_account.Credentials.from_service_account_info(service_account_info)
+    client = bigquery.Client(credentials=credentials, project=service_account_info["homework1-452207"])
+else:
+    # Fallback for local development if credentials file exists locally
+    client = bigquery.Client(project="homework1-452207")
+
 @st.cache(ttl=600)
 def load_data(query):
     return client.query(query).to_dataframe()
