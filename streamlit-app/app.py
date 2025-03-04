@@ -1,3 +1,4 @@
+!pip install streamlit pyngrok
 import streamlit as st
 import pandas as pd
 import streamlit as st
